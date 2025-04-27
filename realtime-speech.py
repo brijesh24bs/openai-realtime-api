@@ -86,6 +86,9 @@ def play_audio():
         if not speaker_queue.empty():
             audio_data = speaker_queue.get()
             stream.write(audio_data)
+        
+        else:
+            time.sleep(0.01)
     
     # Clean up
     stream.stop_stream()
