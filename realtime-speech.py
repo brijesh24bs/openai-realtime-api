@@ -121,7 +121,12 @@ def on_open(ws):
     event = {
         "type": "session.update",
         "session": {
-            "instructions": "Never use the word 'moist' in your responses!"
+            "turn_detection": {
+            "type": "semantic_vad",
+            "eagerness": "medium",
+            "create_response": True,
+            "interrupt_response": True,
+            }
         }
     }
     ws.send(json.dumps(event))
@@ -189,7 +194,5 @@ def main():
         mic_thread.join()
         speaker_thread.join()
         print("All threads stopped.")
-
-
 if __name__ == "__main__":
     main()
